@@ -1,0 +1,540 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{bm}
+\usepackage{amsmath,amssymb,amsthm,enumitem}
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{mathrsfs}
+\usepackage{tikz}
+
+\title{Real Analysis - A Long Form Mathematics Textbook Chapter 1}
+\author{Yen-Ting Chen}
+\date{May 2024}
+
+\tikzset{
+	% define the bar graph element
+	bar/.pic={
+		\fill (-.1,0) rectangle (.1,#1) (0,#1) node[above,scale=1/2]{$#1$};
+	}
+}
+
+\begin{document}
+	\maketitle
+	\section*{1.5 The Completness Axiom}
+		The set R has two binary operations, addition(+) and multiplication (*), and is the unique set satisfying the following axioms:
+		\begin{itemize}
+			\item Axiom 1: (Commutative Law), If a, b $\in$ R, then $a+b = b+a$ and $a*b = b*a$
+			\item Axiom 2: (Distributive Law), If a,b,c $\in$ R, then $a*(b+c) = a*b + a*c$
+			\item Axiom 3: (Associative Law), If a,b,c $\in$ R, then $(a+b)+c = a+(b+c)$ and $(a*b)*c = a*(b*c)$
+			\item Axiom 4: (Identity Law). There are special elements 0,1 $\in$ R, where $a+0 = a$ and $a*1=a$ for all a $\in$ R
+			\item Axiom 5: (Inverse Law). For each a $\in$ R, there is an element -$a \in R$ such that $a + (-a) = 0$. If a $\ne$ 0, then there is also an element $a^{-1} \in R$ such that $a*a^{-1} = 1$
+			\item Axiom 6: (Order Axiom). There is nonempty subset $P \subseteq R$, called the positive elements, such that
+				\begin{itemize}
+					\item If a,b $\in$ P, then a + b $\in$ P and a*b $\in$ P
+					\item If a $\in$ R and a $\ne$ 0, then either a $\in$ P or -a $\in$ P, but not both.
+				\end{itemize}
+			\item Axiom 7: (Completeness Axiom). Given any nonempty A $\subseteq$ R where A is bounded above, A has a least upper bound. In other words, $sup(A) \in R$ for every such A.
+		\end{itemize}
+		
+		Theorem 1.24 (Suprema analytically). Let A $\subseteq$ R. Then $sup(A) = \alpha$ if and only if
+		\begin{itemize}
+			\item $\alpha$ is an upper bound of A, and
+			\item Given any $\epsilon > 0, \alpha - \epsilon$ is not an upper bound of A. That is, there is some $x \in A$ for which $x > \alpha - \epsilon$
+		\end{itemize}
+		Likewise, $inf(A) = \beta$ iff
+		\begin{itemize}
+			\item $\beta$ is a lower bound of A, and
+			\item Given any $\epsilon > 0$, $\beta + \epsilon$ is not a lower bound of A. That is there is some $x \in A$ for which $x < \beta + epsilon$
+		\end{itemize}
+	\section*{1.7 The Archimedean Principle}
+		Lemma 1.26 (The Archimedean Property). If a and b are real numbers with a > 0, then there exists a natural number n such that $na > b$. In particular, for any $\epsilon > 0$ there exists $n \in N$ such that $1/n < \epsilon$.
+		
+		Principle 1.34 (Well-ordering principle). Every non-empty subset of natural numbers contains a smallest element.
+	\section*{Exercises}
+		\subsection*{Exercise 1.1}
+			Explain the error in the following proof that 2=1. Let x = y. Then
+			\begin{equation}
+				\begin{split}
+					x^2 = xy \\
+					x^2 - y^2 = xy - y^2 \\
+					(x+y)(x-y) = y(x-y) \\
+					x+y = y \\
+					2y = y\\
+					2 = 1
+				\end{split}
+			\end{equation}
+			
+			answer: by dividing by (x-y), the proof is essentially dividing by zero, which is mathematicall undefined; thus this invalidates the entire proof.
+		\subsection*{Exercise 1.2}
+			Which of the following statements are true? Give a short explanation for each of your answers.
+			\begin{itemize}
+				\item For ever $n \in N$, there is $m \in N$ such that $m > n$.
+				\item For every $m \in N$, there is an $n \in N$ such that $m > n$.
+				\item There is an $m \in N$ such that for every $n \in N$, $m \ge n$.
+				\item There is an $n \in N$ such that for every $m \in N$, $m \ge n$.
+				\item There is an $n \in R$ such that for every $m \in R$, $m \ge n$.
+				\item For every pair $x<y$ of integers, there is an integer z such that $x < z < y$.
+				\item For every pair $x < y$ of real numbers, there is a real number z such that $x < z < y$.
+			\end{itemize}
+			answer:
+			\begin{itemize}
+				\item True. For any natural number 
+				n, choosing $m=n+1$ satisfies $m > n$. Natural numbers are unbounded above.
+				\item False. If m=1, there is no $n \in N$ with $n < 1$.
+				\item False. There is no largest natural number; N is infinite.
+				\item True. Let n=1. For all $m \in N$, $m \ge 1$.
+				\item False. Real numbers extend to $-\infty$; no universal lower bound $n \in R$.
+				\item False. If x and y are consecutive integers (e.g., $x=2,y=3$), no integer z exists between them.
+				\item True. For real numbers, 
+				$z = (x+y)/2$ always satisfies $x<z<y$.
+			\end{itemize}
+		\subsection*{Exercise 1.3}
+			If A and B are two boxes (possibly with things inside), describe the following in terms of boxes:
+			\begin{itemize}
+				\item $A \ B$
+				\item $P(A)$
+				\item $|A|$
+			\end{itemize}
+			answers:
+			\begin{itemize}
+				\item Imagine looking inside box $A$ and taking out any item that is also found in box $B$. What remains in $A$ are only those things that are not in $B$.
+				\item Think of every possible way you could select items from box $A$ (including selecting none, or all). Each possible selection is itself a (possibly empty) box. The collection of all these possible boxes is $P(A)$.
+				\item Open box $A$ and count how many items are inside. That count is $|A|$.
+			\end{itemize}
+		\subsection*{Exercise 1.4}
+			If $A_1, A_2, A_3, ..., A_n$ are all boxes (possibly with things inside), describe the following terms of boxes:
+			\begin{itemize}
+				\item $\bigcup_{i=1}^{n}A_i$
+				\item $\bigcap_{i=1}^{n}A_i$
+			\end{itemize}
+			answers:
+			\begin{itemize}
+				\item If an item exists in at least one box, it appears once in the union box.
+				\item If even one box lacks an item, it is excluded from the intersection.
+			\end{itemize}
+		\subsection*{Exercise 1.5}
+			Prove that each of the following holds for any sets A and B.
+			\begin{itemize}
+				\item $A \cup B = A$ iff $B \subseteq A$
+				\item $A \cap B$ iff $A \subseteq B$
+				\item $A \ B = A$ iff $A \cap B$ = $\emptyset$
+				\item $A \ B = \emptyset$ iff $A \subseteq B$
+			\end{itemize}
+			answers:
+			\begin{itemize}
+				\item (forward)If $A \cup B = A$, every element of B must already be in A. Thus $B \subseteq A$. (reverse) If $B \subseteq A$, combining A and B adds no new elements, so $A \cup B = A$
+				\item (forward) if $A \cap B = A$, all elements of A are in B, so $A \subseteq B$. (reverse) if $A \subseteq B$, the intersection $A \cap B$ contains exactly A.
+				\item (forward) if $A \setminus B = A$, no elements of A are in B, so $A \cap B$ = $\emptyset$. (reverse) if $A \cap B$ = $\emptyset$, removing B from A leaves A unchanged.
+				\item (forward) if $A \setminus B = \emptyset$, all elements of A are in B, so $A \subseteq B$. (reverse) if $A \subseteq B$, removing B from A removes all elements, leaving $\emptyset$
+			\end{itemize}
+		\subsection*{Exercise 1.6}
+			Suppose f:$X \rightarrow Y$ and $A \subseteq X$ and $B \subseteq Y$.
+			\begin{itemize}
+				\item Prove that $f(f^{-1}(B)) \subseteq B$
+				\item Give an example where $f(f^{-1}(B)) \ne B$
+				\item Prove that $A \subseteq f^{-1}(f(A)))$
+				\item Give an example where $A \ne f^{-1}(f(A)))$
+			\end{itemize}
+			answers:
+			\begin{itemize}
+				\item Let $y \in f(f^{-1}(B))$. By definition, there exists $x \in f^{-1}(B)$ such that $f(x) = y$. Since $x \in f^{-1}(B)$, $f(x) \in B$ by the definition of preimage. Thus $y = f(x) \in B$. Therefore, $f(f^{-1}(B)) \subseteq B$
+				\item Let f: $\{1,2\} \rightarrow \{a,b,c\}$ with $f(1) = a$ and $f(2) = b$. Take $B = \{a,b,c\}. f^{-1}(B) = \{1,2\}. f(f^{-1}(B)) = f(\{1,2\}) = \{a,b\} \ne B$
+				\item Let $x \in A$. Then $f(x) \in f(X)$. By definition of preimage, $x \in f^{-1}(f(A))$. Thus, $A \subseteq f^{-1}(f(A))$
+				\item Let f: $\{1,2\} \rightarrow \{a\}$ with $f(1) = f(2) = a$. Take $A = \{1\}. f(A) = \{a\}$. $f^{-1}(f(A)) = f^{-1}(\{a\}) = \{1,2\} \ne A$
+			\end{itemize}
+		\subsection*{Exercise 1.7}
+			Suppose that f:$X \rightarrow Y$ and g: $Y \rightarrow X$ are functions and that the composite g of f is the identity function id" $X \rightarrow X$. (The identity function sends every element to itself: $id(x)=x$) Show that f must be a one-to-one function and that g must be an onto function.
+			
+			answer:
+			\begin{itemize}
+				\item f is injective
+				
+				Assume $f(x_1) = f(x_2)$ for some $x_1, x_2 \in X$. Applying g to both sides: $g(f(x_1)) = g(f(x_2))$ since g of f = $id_X$, this simplifies to: $x_1 = x_2$. Thus, $f(x_1) = f(x_2) \rightarrow x_1 = x_2$, proving f is injective.
+				\item g is surjective
+				
+				For any $x \in X$, let $y = f(x) \in Y$. Applying g to y: $g(y) = g(f(x)) = x$. Thus, every $x \in X$ has preimage $y = f(x) \in Y$ under g, proving g is surjective.
+			\end{itemize}
+		\subsection*{Exercises 1.8}
+			The following are special cases of De Morgan's laws
+			\begin{itemize}
+				\item Prove that $(A \cap B)^c = A^c \cup B^c$
+				
+					(a) $(A \cap B)^c \subseteq A^c \cup B^c$
+					
+					Let $x \in (A \cap B)^c$. Then $x \notin A \cap B$, so $x \notin A$ or $x \notin B$. Thus, $x \in A^c$ or $x \in B^c$. Therefore $x \in A^c \cup B^c$.
+					
+					(b) $A^c \cup B^c \subseteq (A \cap B)^c$
+					
+					Let $x \in A^c \cup B^c$.
+					Then $x \in A^c$ or $x \in B^c$, so $x \notin A$ or $x \notin B$. Thus, $x \notin A \cap B$, so $x \in (A \cap B)^c$ 
+				\item Prove that $(A \cup B)^c = A^c \cap B^c$
+					
+					(a) $(A \cup B)^c \subseteq A^c \cap B^c$
+					
+					Let $x \in (A \cup B)^c$.
+					Then $x \notin A \cup B$, so $x \notin A$ and $x \notin B$. Thus, $x \in A^c$ and $x \in B^c$, so $x \in A^c \cap B^c$.
+					
+					(b) $A^c \cap B^c \subseteq (A \cup B)^c$
+					
+					Let $x \in A^c \cap B^c$.
+					Then $x \in A^c$ and $x \in B^c$, so $x \notin A and x \notin B$. Thus $x \notin A \cup B$, so $x \in (A \cup B)^c$. Therefore, $(A \cup B)^c = A^c \cap B^c$
+			\end{itemize}
+		\subsection*{Exercise 1.9}
+			\begin{itemize}
+				\item Prove that $\sqrt{3}$ is irrational
+				
+				Assume $\sqrt{3}$ is rational, so $\sqrt{3} = a/b$ where $a,b \in Z$ are coprime. Squaring both sides:
+				$3 = \frac{a^2}{b^2} \implies 3b^2 = a^2$. This implies $a^2$ is divisible by 3, so a must also be divisable by 3 (by the fundamental theorem of arithmetic). Let a = 3k. Substituting:
+				$3b^2 = (3k)^2 \implies 3b^2 = 9k^2 \implies b^2 = 3k^2$. Thus, $b^2$ is divisible by 3, so b is also divisible by 3. This contradicts a and b being coprime. Hence, $\sqrt{3}$ is irrational.
+				\item What goes wrong when you try to adapt your argument from part (a) to show that $\sqrt{4}$ is irrational?
+				\item In part (a) you proved that $\sqrt{3}$ to be irrational, and essentially the same proof shows that $\sqrt{5}$ is irrational. By considering their product or otherwise, prove that $\sqrt{3} - \sqrt{5}$ and $\sqrt{3} + \sqrt{5}$ are either both rational or both irrational. Deduce that they must both be irrational.
+			\end{itemize}
+		\subsection*{Exercise 1.10}
+			Prove that the multiplicative identity in a field is unique.
+			
+			Let F be a field. Suppose there exist two multiplicative identities 1 and e in F. By definition of a multiplicative identity, for all $a \in F$:
+			
+			$1 \times a = a$ and $e \times a = a$
+			
+			Consider the case where a = e. Applying the identity property of 1:
+			
+			$1 \times e = e$
+			
+			Now consider the case where a = 1. Applying the identity property of e:
+			
+			$e \times 1 = 1$
+			
+			In a field, multiplication is commutative ($a \times b = b \times a$), so:
+			
+			$1 \times e = e \times 1$
+			
+			From (1),(2) and (3), we conclude:
+			
+			$e = 1$
+			
+			Thus, there cannot be two distinct multiplicative identities in F. The multiplicative identity is unique.
+		\subsection*{Exercise 1.11}
+			Given an ordered field F, recall that we defined the positive elements to be a nonempty subset $P \subseteq F$ that satisfies both the following conditions:
+			
+			(i) If $a,b \in P$, then $a + b \in P$ and $a \times b \in P$
+			
+			(ii) If $a \in F$ and $a \ne 0$, then either $a \in P$ or $-a \in P$, but not both.
+			
+			\begin{itemize}
+				\item Give an example of some $P_1 \subseteq R$ that satisfies (i) but not (ii)
+				
+				$P_1$ = R(the entire set of real numbers)
+				
+				Satisfies (i): Closed under addition and multiplication
+				
+				Fails (ii): For any $a \ne 0$, both a and -a belong to $P_1$, violating the "exactly one" requirement.
+				
+				\item Give an example of some $P_2 \subseteq R$ that satisfies (ii) but not (i)
+				
+				$P_2 = \{x \in R| (x>0 and x \notin Z) or (x<0 and x \in Z)\}$
+				
+				Satisfies (ii): For every $a \ne 0$:
+				if a is positive non-integer, $a \in P_2$. If a is a positive integer, -$a \in P_2$. If a is negative integer, $a \in P_2$. If a is negative non-integer, $-a \in P_2$.
+				
+				Fails (i): $0.5 \in P_2$ and $0.5 \in P_2$ but $0.5 + 0.5 = 1 \notin P_2$. $-1 \in P_2$ and $0.5 \in P_2$, but $-1 + 0.5 = -0.5 \notin P_2$.
+			\end{itemize}
+		\subsection*{Exercises 1.12}
+			Assume that F is an ordered field and $a,b,c,d \in F$ with $a < b$ and $c < d$.
+			\begin{itemize}
+				\item Show that $a+c < b+d$
+					Step 1: use the additive property of inequalities in ordered fields: If $a < b$, then $a+c<b+c$. If $c<d$, then $b+c < b+d$.
+					
+					Step 2: By transitivity of $<$:
+					$a+c < b+c < b+d \implies a+c<b+d$
+				
+				\item Prove that it is not necessarily true that $ac < bd$.
+				
+					Counter example:
+					
+					Let F = R, and choose:
+					a = -2, b = -1, c = -3, d = -2.
+					\begin{itemize}
+						\item a < b(since -2 < -1) and c < d (since -3 < -2)
+						\item Compute ac = (-2)(-3) = 6 and bd = (-1)(-2) = 2
+						\item $6 \nless 2$, so $ac < bd$ fails.
+					\end{itemize}
+			\end{itemize}
+		\subsection*{Exercise 1.13}
+			Let a,b and $\epsilon$ be elements of an ordered field.
+			\begin{itemize}
+				\item Show that if $a < b + \epsilon$ for every $\epsilon > 0$, then $a \le b$.
+				
+					Suppose, for contradiction, that $a > b$. Then $a - b > 0$. Let $\epsilon$ = $a - b$, which is a positive number. Plug this into the assumption $a < b + \epsilon = a$. This says $a < a$, which is impossible. Therefore, our assumption that $a > b$ must be false. So it must be that $a \le b$.
+				\item Use part (a) to show that if $|a-b| < \epsilon$ for all $\epsilon > 0$, then $a = b$
+				
+					Suppose, for contradiction, that $a \ne b$. Then $|a-b| > 0$. Let $\epsilon$ = $|a-b|/2$, which is still positive. By assumption $|a-b| < \epsilon = |a-b|/2$. But this says $|a-b| < |a-b|/2$, which is impossible unless $|a-b| = 0$. Therefore, our assumption that $a \ne b$ must be false. So $a = b$.
+			\end{itemize}
+		\subsection*{Exercise 1.14}
+			Prove that the equality |ab| = |a||b| holds for all real numbers a and b.
+			
+				Definition of absolute value:
+				For any real number  \begin{equation*}
+					x: |x| = \begin{cases}
+						x &\text{if $x \ge 0$}\\
+						-x &\text{if $x < 0$}
+					\end{cases}
+				\end{equation*}
+				\begin{itemize}
+					\item case 1: both $a \le 0$ and $b \le 0$
+					\begin{itemize}
+						\item $ab \ge 0$
+						\item $|ab| = ab$
+						\item $|a| = a, |b| = b$
+						\item $|a||b| = ab$
+						\item So, $|ab| = |a||b|$
+					\end{itemize}
+					\item case 2: $a \ge 0, b < 0$
+					\begin{itemize}
+						\item $ab \le 0$
+						\item $|ab| = -(ab) = -ab$
+						\item $|a|=a, |b| = -b$
+						\item $|a||b| = a(-b) = -ab$
+						\item So, $|ab| = |a||b|$
+					\end{itemize}
+					\item case 3: $a < 0, b \ge 0$
+						similar to case 2
+					\item case 4: $a < 0, b < 0$
+					\begin{itemize}
+						\item $ab \ge 0$
+						\item $|ab| = (-a)(-b) = ab$
+						\item $|a| = -a, |b| = -b$
+						\item $|a||b| = (-a)(-b) = ab$
+						\item So, $|ab| = |a||b|$
+					\end{itemize}
+				\end{itemize}
+		\subsection*{Exercise 1.15}
+			For each of the following, find all numbers x which satisfy the expression.
+			\begin{itemize}
+				\item $|x-4| = 7$
+					
+					$\{-3,11\}$
+				\item $|x-4| < 7$
+				
+					$(-3, 11)$
+				\item $|x+2| < 1$
+					
+					$(-3,-1)$
+				\item $|x-1|+|x-2| > 1$
+				
+					$(-\infty, 1) \cup (2, \infty)$
+				\item $|x-1|+|x+1| > 1$
+				
+					$R$
+				\item $|x-1||x+1| = 0$
+				
+					$\{-1, 1\}$
+				\item $|x-1||x+2| = 3$
+				
+					$\{\frac{-1+\sqrt{21}}{2}, \frac{-1-\sqrt{21}}{2} \}$
+			\end{itemize}
+		\subsection*{Exercise 1.16}
+			Let $max\{x,y\}$ denote the maximum of the real numbers x and y, and let $min\{x,y\}$ denote the minimum. For example, $min\{-1,4\} = -1$, and also min\{-1,-1\} = -1. Prove that
+			
+				$max\{x,y\} = \frac{x+y+|y-x|}{2}$ and $min\{x,y\} = \frac{x+y-|y-x|}{2}$
+				
+			Then find a formula for $max\{x,y,z\}$ and $min\{x,y,z\}$.
+			
+			\begin{itemize}
+				\item Consider two cases to prove for maximum, minimum
+					\begin{itemize}
+						\item $y \ge x$
+							
+							maximum: $\frac{x+y+|y-x|}{2} = \frac{x+y+y-x}{2} = y$
+							
+							minimum:
+							$\frac{x+y-|y-x|}{2} = \frac{x+y-y+x}{2} = x$
+						\item $y < x$
+						
+							maximum:
+							$\frac{x+y+|y-x|}{2} = \frac{x+y+x-y}{2} = x$
+							
+							minimum:
+							$\frac{x+y-|y-x|}{2} = \frac{x+y-x+y}{2} = y$
+					\end{itemize}
+					Thus the formula holds for all $x,y \in R$
+				\item extension to three variables
+					\begin{itemize}
+						\item maximum of three variables
+							$max\{x,y,z\} = max(max(x,y),z) = \frac{\frac{x+y+|y-x|}{2} + z + |z - \frac{x+y+|y-x|}{2}|}{2}$
+						\item minimum of three variables
+							$min\{x,y,z\} = min(min(x,y),z) = \frac{\frac{x+y-|y-x|}{2} + z - |z - \frac{x+y-|y-x|}{2}|}{2}$
+					\end{itemize}
+			\end{itemize}
+		\subsection*{Exercise 1.17}
+			Prove that if $a,b \in R$ and $0<a<b$, then $a^n<b^n$ for any positive integer n.
+			\begin{itemize}
+				\item base case
+				
+				given $0 < a < b$, the inequality holds by assumption.
+				
+				\item inductive step:
+				
+				Assume $a^k < b^k$ for some integer $k \ge 1$. $a^{k+1} < ab^k$. Since a < b, then $ab^k < bb^k = b^k+1$. Thus, $a^{k+1} < b^{k+1}$.
+				
+				\item By induction, $a^n < b^n$ holds for all positive integers n.
+			\end{itemize}
+		\subsection*{Exercise 1.18}
+			Prove that if $a_1, a_2, ..., a_n$ are real numbers, then: $|a_1 + a_2 + ... + a_n| \le |a_1|+|a_2|+...+|a_n|$.
+				
+				Use induction based on triangle inequality of two numbers to prove.
+				
+		\subsection*{Exercise 1.19}
+			Prove that $\sum_{k=1}^{n}\frac{1}{k(k+1)} = \frac{n}{n+1}$ for every natural number n.
+			
+				With partial fractions, we know $\frac{1}{k(k+1)} = \frac{1}{k} - \frac{1}{k+1}$
+				\begin{equation}
+					\sum_{k=1}^{n}\frac{1}{k(k+1)} = (1/1-1/2) + (1/2-1/3) + ... + (1/n - 1/(n+1)) = \frac{n}{n+1}
+				\end{equation}
+		\subsection*{Exercise 1.20}
+			Determine which natural numbers, n, have the property that $\sqrt{n}$ is irrational.
+			
+			A natural number n has an irrational square root if and only if it's not a perfect square.
+			
+		\subsection*{Exercise 1.21}
+			Let $f:X \rightarrow Y$, and assume $A_1, A_2 \subseteq X$. Show that: $f(A_1 \cap A_2) \subseteq f(A_1) \cap f(A_2)$. Recall that if A is a set, then $f(A) = \{f(x):x \in A\}$.
+			
+			Let $y \in f(A_1 \cap A_2)$, then there exists $x \in A_1 \cap A_2$ that results in $y = f(x)$. Since $x \in A_1 \cap A_2$, $x \in A_1$ and $x \in A_2$. Therefore, $y = f(x) \in f(A_1)$ and $y = f(x) \in f(A_1)$; this gives $y \in f(A_1) \cap f(A_2)$. Thus proves $f(A_1 \cap A_2) \subseteq f(A_1) \cap f(A_2)$.
+		\subsection*{Exercise 1.22}
+			Give an example of a function f, and a pair of sets A and B, for which
+			\begin{equation}
+				f(A_1 \cap A_2) \ne f(A_1) \cap f(A_2)
+			\end{equation}
+			Recall that if A is a set, then $f(A) = \{f(x):x \in A\}$.
+			
+			Let $f:R \rightarrow R$ be $f(x) = x^2$
+			$A_1 = \{1\}, A_2 = \{-1\}$.
+			\begin{equation}
+				\begin{split}
+					f(A_1 \cap A_2) = f(\emptyset) = \emptyset \\
+					f(A_1) \cap f(A_2) = \{1\} \cap \{1\} = \{1\}
+				\end{split}
+			\end{equation}
+		\subsection*{Exercise 1.23}
+			Assume that $A \subseteq B$ and both are bounded above. Prove that $sup(A) \le sup(B)$.
+			
+			Suppose for contradiction, that $sup(A) > sup(B)$. Then, by the definition of supremum, there exists some $a \in A$ such that $a > sup(B)$. But since $a \in B$, this contradicts the fact that $sup(B)$ is an upper bound for B.
+		\subsection*{Exercise 1.24}
+			Suppose $A \subseteq R$ has a maximal element - that is, there is an element $M \in A$ such that $x \le M$ for all $x \in A$. Likewise, assume $B \subseteq R$ has a minimal element m.
+			\begin{itemize}
+				\item Prove that $sup(A) = M$.
+				\begin{itemize}
+					\item Since M is the maximal element of A, by definition $\forall x \in A, x \le M$. Thus M is an upper bound of A.
+					\item To show that M is the least upper bound, suppose there exists another upper bound S of A such that $S < M$. But since $M \in A$, we must have $M \le S$. This contradicts $S < M$. Therefore, no such S exists, and M is the smallest upper bound.
+				\end{itemize}
+				\item Prove that $inf(B) = m$.
+				\begin{itemize}
+					\item Since m is the minimal element of B, by definition $\forall x \in B, x \ge m$. Thus, m is a lower bound of B.
+					\item To show m is the greatest lower bound, suppose there exists another lower bound t of B such that t > m. But since $m \in B$, we must have $t \le m$. This contradicts $t > m$. Therefore, no such t exists, and m is the largest lower bound.
+				\end{itemize}
+			\end{itemize}
+		\subsection*{Exercise 1.25}
+			Suppose that A is a nonempty set containing finitely many integers. Prove by induction that A has a maximal element, and that $max(A) \in A$.
+			\begin{itemize}
+				\item base case: if A contains exactly one integer a, then is trivially the maximal element, and $max(A) = a \in A$.
+				\item inductive step: Assume every nonempty finite set of integers with k elements has a maximal element that belongs to the set. Let $A = \{a_1, a_2, ..., a_{k+1}\}$. $A' = A \setminus \{x\}$ with k elements. By the induction hypothesis, A' has a maximal element $m \in A'$. Compare x with m, if x > m, then x is the maximal element of A; if $x \le m$, then m remains the maximal element of A. This proves that the maximal element of A is an element of A. By mathematical induction, every nonempty finite set of integers has a maximal element that belongs to the set.
+			\end{itemize}
+		\subsection*{Exercise 1.26}
+			Prove that N is complete
+			
+			To prove that N is complete, we first clarify the definition of completeness. Completeness means that every nonempty subset of N that is bounded above has a least upper bound in N.
+			\begin{itemize}
+				\item Let $S \subseteq$ N be a nonempty subset bounded above. 
+				
+				By definition, there exsists some $M \in N$ such that $s \le M$ for all $s \in S$
+				\item S is finite. 
+				
+				Since $S \subseteq \{1,2,...,M\}$ and this set is finite, S must also be finite.
+				\item Every finite nonempty subset of N has a maximum.
+				
+				By the result proven in the previous induction problem, every finite nonempty set of integers contains a maximal element. Let max(S) denote this maximum.
+				\item max(S) is the least upper bound of S
+				
+				max(S) is an upper bound because $s \le max(S)$ for all $s \in S$. It is the least upper bound because no smaller natural number than max(S) can be an upper bound for S.
+				\item Since every nonempty bounded-above subset $S \subseteq N$ has a least upper bound $max(S) \in N$. N is complete.
+			\end{itemize}
+		\subsection*{Exercise 1.27}
+			For each item, compute the requested supremum or infimum or carefully explain why it does not exist. Either way, prove that your answer is correct.
+			\begin{itemize}
+				\item Determine sup(A) for A = $\{\frac{(-1)^n}{n}:n \in N\}$
+				
+					The set A alternates between positive and negative terms: A = \{-1, 1/2, -1/3, 1/4, -1/5 ...\}. The positive terms are 1/2, 1/4, 1/6 ... approaching 0; the negative terms are -1, -1/3, -1/5 ... approaching 0. The supremum is 1/2. 
+					
+					Proof
+					\begin{itemize}
+						\item For all n, $\frac{(-1)^n}{n} \le 1/2$
+						\item if $n \ge 2$, positive terms $1/n \le 1/2$ and negative terms are < 1/2
+						\item Thus, $sup(A) = 1/2$ and $1/2 \in A$
+					\end{itemize}
+				
+				\item Fix $a \in (0,1)$. Determine inf(B) for $B = \{a^n:n \in N\}$.
+				
+				For $a \in (0,1)$, $a^n$ is a strictly decreasing sequence bounded below by 0. For example, with a = 0.5: $B = \{0.5, 0.25, 0.125\}$
+				
+				To prove inf(B) = 0, firstly, $a^n > 0$ for all n, so 0 is a lower bound. For any $\epsilon > 0$, $choose N > \frac{ln \epsilon}{ln \alpha}$. Then $a^N \le \epsilon$, proving 0 is the greatest lower bound.
+				
+				\item Fix $a \in (1, \infty)$. Determine sup(C) for $C = \{a^n: n \in N\}$
+				
+				For $a > 1, a^n$ is strictly increasing sequence unbounded above. For example a = 2. Thus the supremum doesn't exist in the real numbers. Since for any M > 0, choose N > $\frac{ln M}{ln a}$. Then $a^N > M$, proving the sequence grows without bound.
+			\end{itemize}
+		\subsection*{Exercise 1.28}
+			Prove the infimum case of Theorem 1.24
+			
+			To prove the infimum case of theorem 1.24, we demonstrate that for a set $A \subseteq R$, $inf(A) = \beta$ if and only if 1. $\beta$ is a lower bound of A 2. For every $\epsilon > 0$, there exists $x \in A$ such that $x < \beta + \epsilon$
+			\begin{itemize}
+				\item forward direction: assume $\beta = inf(A)$
+				\begin{itemize}
+					\item Lower bound property: by definition of infimum, $\beta$ is a lower bound of A, so $x \le \beta$ for all $x \in A$.
+					\item $\epsilon$ condition: Let $\epsilon > 0$. Since $\beta$ is the greatest lower bound, $\beta + \epsilon$ is not a lower bound of A. Thus, there exists $x \in A$ such that $x < \beta + \epsilon$
+				\end{itemize}
+				\item reverse direction: assume $\beta$ is a lower bound of A and for every $\epsilon > 0$, there exists $x \in A$ with $x < \beta + \epsilon$. We prove $\beta = inf(A)$ by showing it is the greatest lower bound.
+				\begin{itemize}
+					\item $\beta$ is already a lower bound by assumption
+					\item Suppose there exists a greater lower bound $\gamma$ such that $\gamma > \beta$. Let $\epsilon = \gamma - \beta > 0$. By assumption, there exists $x \in A$ such that $x < \beta + \epsilon = \gamma$. This contradicts $\gamma$ being a lower bound. Thus $\beta$ is the greatest lower bound.
+				\end{itemize}
+			\end{itemize}
+		\subsection*{Exercise 1.29}
+			Prove that $sup(\{\frac{n}{n+1}: n \in N\}) = 1$ and $inf(\{\frac{n}{n+1}: n \in N\}) = 1/2$.
+			
+			Sup(S) = 1
+			\begin{itemize}
+				\item show that 1 is an upper bound
+				
+				For all $n \in N$,
+				\begin{equation}
+					\frac{n}{n+1} = 1 - \frac{1}{n+1} < 1
+				\end{equation}
+				So every element of S is less than 1, hence 1 is an upper bound.
+				\item Show that 1 is the least upper bound
+				
+				Let $\epsilon > 0$. We want to show there exists $x \in S$ such that $x > 1 - \epsilon$. Set $\frac{n}{n+1} > 1 - \epsilon$
+				\begin{equation}
+					1 - \frac{1}{n+1} > 1-\epsilon \rightarrow \frac{1}{n+1} < \epsilon \rightarrow n > 1/\epsilon - 1
+				\end{equation}
+				For any $\epsilon > 0$, pick n large enough so that $n > 1/\epsilon - 1$. Then $\frac{n}{n+1} > 1-\epsilon$.
+				Thus, for any $\epsilon > 0$, there is an element of S within $\epsilon$ of 1 from below. Therefore, 1 is the supremum of S.
+				
+				\item inf(S) = 1/2
+				\begin{itemize}
+					\item Show that 1/2 is a lower bound. The smallest value occurs at $n = 1: 1/2$. For $n > 1$, $\frac{n}{n+1} \ge 1/2$
+					\item Show that 1/2 is the greatest lower bound
+					For any $\epsilon > 0$, $1/2+\epsilon$ is greater than 1/2. For n=1, $1/2 < 1/2+\epsilon$.
+					For all n > 1, $\frac{n}{n+1} > 1/2$. Thus 1/2 is the smallest element and hence the infimum.
+				\end{itemize}
+			\end{itemize}
+		\subsection*{Exercise 1.30}
+			Let $A, B \subseteq R$, and assume that $sup(A) < sup(B)$
+			\begin{itemize}
+				\item Show that there exists an element $b \in B$ that is an upper bound for A.
+				
+					Since sup(A) < sup(B), sup(A) is not an upper bound for B. There exists an element $b \in B$ such that $b > sup(A)$. Since sup(A) is an upper bound for A, any $b > sup(A)$ is also an upper bound for A. Thus, $b \in B$ serves as an upper bound for A.
+				\item Give an example to show that this is not necessarily the case if we instead only assume that $sup(A) \le sup(B)$. You do not need to prove your answer.
+				
+					Let $A = (0,1)$ and $B = (0,1).
+					sup(A) = sup(B) = 1$. However, every element $b \in B$ satisfies $b < 1$, so no $b \in B$ is an upper bound for A.
+			\end{itemize}
+\end{document}
