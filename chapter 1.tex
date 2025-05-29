@@ -537,4 +537,185 @@
 					Let $A = (0,1)$ and $B = (0,1).
 					sup(A) = sup(B) = 1$. However, every element $b \in B$ satisfies $b < 1$, so no $b \in B$ is an upper bound for A.
 			\end{itemize}
+		\subsection*{Exercise 1.31}
+			Suppose that $A,B \subseteq R$ are nonempty and bounded above. Find a formula for $sup(A \cup B)$ and prove that it is correct.
+			
+			The supremum of the union of two nonempty, bounded above sets $A, B \subseteq R$ is given by:
+			\begin{equation}
+				sup(A \cup B) = max\{sup(A), sup(B)\}
+			\end{equation}
+			\begin{itemize}
+				\item Show $max\{sup(A), sup(B)\}$ is an upper bound for $A \cup B$
+				
+				Let $\alpha = sup(A)$ and $\beta = sup(B)$. For any $x \in A \cup B$:
+				\begin{itemize}
+					\item If $x \in A$, then $x \le \alpha \le max\{\alpha, \beta\}$
+					\item If $x \in B$, then $x \le \beta \le max\{\alpha, \beta\}$
+				\end{itemize}
+				Thus, $max\{\alpha, \beta\}$ is an upper bound for $A \cup B$
+				\item Prove $max\{sup(A), sup(B)\}$ is the least upper bound
+				
+				Assume M is another upper bound for $A \cup B$ with $M < max\{\alpha, \beta\}$. Without loss of generality, suppose $\alpha \ge \beta$, so $max\{\alpha, \beta\} = \alpha$. Then:
+				\begin{itemize}
+					\item $M < \alpha$
+					\item Since $\alpha = sup(A)$, there exists $a \in A$ such that $M < a \le \alpha$. But $a \in A \cup B$, which contradicts M being an upper bound for $A \cup B$. Similar logic applies for $\beta > \alpha$. Therefore, no such M can exists, and $max\{\alpha, \beta\}$ is the least upper bound.
+				\end{itemize}
+			\end{itemize}
+		\subsection*{Exercise 1.32}
+			Suppose $A \subseteq R$ is bounded above and $c \in R$. Define $c + A = \{c+a: a \in A\}$ and $cA = \{ca: a \in A\}$
+			\begin{itemize}
+				\item Prove that $sup(c+A) = c + sup(A)$
+				
+					\begin{itemize}
+						\item Let $s = sup(A)$. For any $x \in c + A$, we have $x = c + a$ for some $a \in A$. Since $a \le s$, it follows that $c+a \le c + s$. Thus $c + s$ is an upper bound for $c + A$.
+						\item Suppose $M < c+s$ is another upper bound for $c + A$. Then $M-c < s$. By definition of supremum, there exists $a \in A$ such that $M-c < a \le s$. This implies $c + a > M$, which contradicts M being an upper bound. Hence c+s is the least upper bound.
+					\end{itemize}
+				\item Determine neccessary and sufficient conditions on c and A for $sup(cA) = c sup(A)$. Give an example of a set A and number c where $sup(cA) \ne c sup(A)$.
+				
+					The equality holds if and only if $c \ge 0$
+					\begin{itemize}
+						\item $c \ge 0$
+						
+						For any $x \in cA$, we have $x = ca$ where $a \le sup(A)$. Since $c \ge 0$, multiplying preserves the inequality: $ca \le c sup(A)$ if $M < c sup A$ were an upper bound, then $M/c < sup(A)$, implying there exists $a \in A$ such that $M/c < a$. This leads to $ca > M$, a contradiction. Thus $sup(cA) = c sup(A)$.
+						\item $c < 0$
+						
+						Multiplying by a negative scalar reverse inequalities. Here $sup(cA) = c inf(A)$, which generally differs from $c sup(A)$. For example, let $A = \{2,1\}$ and $c = -1$. Then
+						\begin{itemize}
+							\item $sup(A) = 2$
+							\item $c sup(A) = -2$
+							\item $cA = \{-2, -1\}$
+							\item $sup(cA) = -1 \ne -2$
+						\end{itemize}
+					\end{itemize}
+			\end{itemize}
+		\subsection*{Exercise 1.33}
+			For $A \subseteq R$, we denote -A to be the set obtained by taking the opposite of everything in A. That is
+			\begin{equation}
+				-A = \{-x: x \in A\}
+			\end{equation}
+			Suppose that$ A \ne \emptyset$ and that A is bounded below. Prove that $-A \ne \emptyset, -A$ is bounded above, and $sup(-A) = -inf(A)$
+			
+			\begin{itemize}
+				\item Since $A \ne \emptyset$, there exists at least one $x \in A$. Then $-x \in A$ by definition. Thus -A is also nonempty.
+				
+				\item Since A is bounded below, there exists some $m \in R$ such that $m \le x$ for all $x \in A$. Take any $y \in -A$. Then $y = -x$ for some $x \in A$. So:
+				\begin{equation}
+					y = -x \le -m
+				\end{equation}
+				because $x \ge m$. Therefore, -m is an upper bound for -A
+				
+				\item Let s = inf(A). We want to show that sup(-A) = -s
+					\begin{itemize}
+						\item -s is an upper bound for -A
+						
+						For any $y \in -A, y = -x$ for some $x \in A$. Since $s \le x$, we have $-x \le -s$, so $y \le -s$. Thus -s is an upper bound for -A.
+						\item Suppose $M < -s$ is another upper bound for -A. Then $-M > s$. By the definition of infimum, for any $\epsilon > 0$, there exists $x_0 \in A$ such that $x_0 < s + \epsilon$. Take $\epsilon = (-M) - s > 0$, so $x_0 < -M$.
+						Then $-x_0 > M$, and $-x_0 \in A$, which contradicts M being an upper bound for -A. Therefore -s is the least upper bound, i.e., $sup(-A) = -inf(A)$
+					\end{itemize}
+			\end{itemize}
+		\subsection*{Exercise 1.34}
+			For each $n \in N$, assume we are given a closed interval $I_n = [a_n, b_n]$. Also, assume that each $I_{n+1}$ is contained inside of $I_n$. This gives a sequence of increasingly smaller intervals
+			\begin{equation}
+				... I_4 \subseteq I_3 \subseteq I_2 \subseteq I_1
+			\end{equation}
+			Prove that $\bigcap_{n=1}^{\infty}I_n \ne \emptyset$. That is, prove that there is some real number x such that $x \in I_n$ for every $n \in N$.
+			
+			To prove that the intersedction of nested closed intervals is non-empty, we proceed as follows:
+			\begin{itemize}
+				\item Let $I_n = [a_n, b_n]$, where $a_n \le a_{n+1} \le b_{n+1} \le b_n$ for all n.
+				\begin{itemize}
+					\item The sequence $\{a_n\}$ is monotonically increasing and bounded above by $b_1$
+					\item The sequence $\{b_n\}$ is monotonically decreasing and bounded below by $a_1$
+				\end{itemize}
+				By the monotone convergence theorem, both sequences converge: $\lim_{n \rightarrow \infty}a_n = x$ and $\lim_{n \rightarrow \infty}b_n = y$
+				
+				\item Show $x \le y$
+				
+				For all n, $a_n \le b_n$. Taking limits preserves inequalities:
+				\begin{equation}
+					x = \lim_{n \rightarrow \infty}a_n \le \lim_{n \rightarrow \infty}b_n = y
+				\end{equation}
+				
+				\item Prove $x \in I_n$ for all n
+					\begin{itemize}
+						\item Since $\{a_n\}$ is increasing, $a_n \le x$ for all n.
+						\item Since $\{b_n\}$ is decreasing and $x \le y \le b_n$, $x \le b_n$ for all n.
+					\end{itemize}
+					Thus $a_n \le x \le b_n$, so $x \le [a_n, b_n] = I_n$ for every n.
+			\end{itemize}
+		\subsection*{Exercise 1.35}
+			Give an example showing that the conclusion of Exercise 1.34 need not hold if each $I_n$ is allowed to be an open interval.
+			
+			Consider the sequence of open intervals:
+			\begin{equation}
+				I_n = (0, 1/n) \text{for $n \in N$}
+			\end{equation}
+			
+			Suppose there exists an $x \in \bigcap_{n=1}^{\infty}I_n$. Then $0 < x < 1/n$ for all $n \in N$. But by the archimedean property, there exists $N \in N$ such that $1/N < x$. This contradicts $x < 1/N$. Thus no such x exists and the intersection is empty.
+		\subsection*{Exercise 1.36}
+			\begin{itemize}
+				\item Determine \{1,3,5\} + \{-3,0,1\}
+					\begin{equation}
+						\{-2,0,1,2,3,4,5,6\}
+					\end{equation}
+				\item Assume that $A,B \in R$ and sup(A) and sup(B) exist. Prove that
+				\begin{equation}
+					sup(A+B) = sup(A) + sup(B)
+				\end{equation}
+				
+				\begin{itemize}
+					\item $sup(A+B) \le sup(A) + sup(B)$
+					
+						Let $a \in A, b \in B$. Then $a \le sup(A)$, $b \le sup(B)$, so
+						\begin{equation}
+							a + b \le sup(A) + sup(B)
+						\end{equation}
+						Thus sup(A) + sup(B) is an upper bound for A + B. Therefore,
+						\begin{equation}
+							sup(A+B) \le sup(A) + sup(B)
+						\end{equation}
+					\item $sup(A+B) \ge sup(A) + sup(B)$
+					
+						Let $\epsilon > 0$. Since sup(A) is the least upper bound, there exists $a_{\epsilon} \in A$ such that
+						\begin{equation}
+							a_{\epsilon} > sup(A) - \epsilon / 2
+						\end{equation}
+						Similarly, there exists $b_{\epsilon} \in B$ such that
+						\begin{equation}
+							b_{\epsilon} > sup(B) - \epsilon / 2
+						\end{equation}
+						Then,
+						\begin{equation}
+							a_{\epsilon} + b_{\epsilon} > sup(A) + sup(B) - \epsilon
+						\end{equation}
+						So for every $\epsilon > 0$, there is an element in $A + B$ greater than $sup(A) + sup(B) - \epsilon$. Thus,
+						\begin{equation}
+							sup(A + B) \ge sup(A) + sup(B)
+						\end{equation}
+				\end{itemize}
+			\end{itemize}
+			Thus:
+			\begin{equation}
+				sup(A+B) = sup(A) + sup(B)
+			\end{equation}
+		\subsection*{Exercise 1.37}
+			\begin{itemize}
+				\item Determine $\{1,3,5\} \cdot \{-3,0,1\}$
+					\begin{equation}
+						\{-15, -9, -3, 0, 1, 3, 5\}
+					\end{equation}
+				
+				\item Give an example of sets A and B where $sup(A \cdot B) \ne sup(A) \cdot sup(B)$
+					
+					Let $A = (-1, 0), B = (-1, 0)$. For a,b both negative and less than 0,$ ab > 0$, and the maximum value is when a, b approach 0 from below:
+					\begin{equation}
+						\lim_{a\rightarrow 0}\lim_{b \rightarrow 0} ab = 0
+					\end{equation}
+					But the minimum value is when a,b are close to -1:
+					\begin{equation}
+						(-1 + \epsilon)(-1 + \delta) \simeq 1
+					\end{equation}
+					So $A \cdot B = (0, 1)$ and $sup(A \cdot B) = 1$.
+					But $sup(A)\cdot sup(B) = 0$.
+			\end{itemize}
 \end{document}
