@@ -1,0 +1,39 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{bm}
+\usepackage{amsmath,amssymb,amsthm,enumitem}
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{mathrsfs}
+\usepackage{tikz}
+
+\title{Real Analysis - A Long Form Mathematics Textbook Chapter 2: Cardinality}
+\author{Yen-Ting Chen}
+\date{May 2025}
+
+\tikzset{
+	% define the bar graph element
+	bar/.pic={
+		\fill (-.1,0) rectangle (.1,#1) (0,#1) node[above,scale=1/2]{$#1$};
+	}
+}
+
+\begin{document}
+	\maketitle
+	\section*{2.1 Bijections and Cardinality}
+		Principle 2.1 (The bijection principle). Two sets have the same size if and only if there is a bijection between them.
+		
+	\section*{2.2 Counting Infinities}
+		Theorem 2.8 ($|Z| = |Q|$). There are the same number of integers as rational numbers.
+		
+		Theorem 2.9 ($|R| > |N|$). There are more real numbers than natural numbers.
+		
+		Theorem 2.11 (Sizes of infinity). There are different sizes of infinity, with countable infinity being the smallest. Moreover, N, Z, and Q are countable while R is uncountable.
+		
+		Theorem 2.13 (|A| < |P(A)|). If A is a set and P(A) is the power set of A, then
+		\begin{equation}
+			|A| < |P(A)|
+		\end{equation}
+		
+		Corollary 2.14 (There exist infinitely many infinities). There exist infinitely many distinct infinite cardinalities.
+\end{document}
