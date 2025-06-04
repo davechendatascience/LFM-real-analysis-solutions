@@ -30,10 +30,316 @@
 		
 		Theorem 2.11 (Sizes of infinity). There are different sizes of infinity, with countable infinity being the smallest. Moreover, N, Z, and Q are countable while R is uncountable.
 		
-		Theorem 2.13 (|A| < |P(A)|). If A is a set and P(A) is the power set of A, then
+		Theorem 2.13 ($|A| < |P(A)|$). If A is a set and P(A) is the power set of A, then
 		\begin{equation}
 			|A| < |P(A)|
 		\end{equation}
 		
 		Corollary 2.14 (There exist infinitely many infinities). There exist infinitely many distinct infinite cardinalities.
+	\section*{Exercises}
+		\subsection*{Exercise 2.1}
+			\begin{itemize}
+				\item List all the elements of $P(\{a,b,c\})$
+					\begin{equation}
+						\{\emptyset, \{a\},\{b\},\{c\},\{a,b\},\{a,c\},\{b,c\},\{a,b,c\}\}
+					\end{equation}
+				\item Determine a formula for the number of elements in the power set of an n-element set.
+					\begin{equation}
+						|P(A)| = 2^{|A|}
+					\end{equation}
+					for finite sets.
+			\end{itemize}
+		\subsection*{Exercise 2.2}
+			Prove that $|\{e^n: n \in N\}| = |N|$.
+			
+			\begin{itemize}
+				\item Injectivity
+				
+				Suppose $f(n_1) = f(n_2)$. Then $e^{n_1} = e^{n_2}$. Since $e^x$ is strictly increasing, $n_1 = n_2$. Thus f is injective
+				
+				\item Surjectivity
+				
+				For every $e^n \in \{e^n: n \in N\}$, there exists $n \in N$ such that $f(n) = e^n$. Thus, f is surjective.
+				
+				\item Conclusion
+				
+				Since f is both injective and surjective, it is a bijection. By the bijection principle, the cardinalities are equivalent.
+			\end{itemize}
+		\subsection*{Exercise 2.3}
+			The following pairs of sets have the same size, and so there exists a bijection between them. Write down an explicit bijection in each case. You do not need to prove your answers.
+			\begin{itemize}
+				\item $(0, \infty)$ and $(1, \infty)$
+				
+					f(x) = x + 1 \\
+					Maps each element in $(0, \infty)$ to $(1, \infty)$ by shifting right by 1.
+				\item $(0, \infty)$ and $(-\infty. 3)$
+				
+					f(x) = 3-x \\
+					Reflects $(0, \infty)$ over x = 1.5 covering all real numbers less than 3.
+				\item $(0, \infty)$ and $(0, 1)$
+					f(x) = $\frac{1}{x+1}$ \\
+					Compresses $(0, \infty)$ into $(0, 1)$ via reciprocal transformation.
+				\item R and $(0, \infty)$
+					f(x) = $e^x$ \\
+					Exponential function maps all reals to positive reals bijectively.
+				\item R and $(0, 1)$
+					f(x) = $\frac{1}{1 + e^{-x}}$ \\
+					Logistic function maps R to (0, 1) with an S-shaped curve.
+				\item Z and $\{..., 1/8, 1/4, 1/2, 1, 2, 4, 8, ...\}$
+					f(k) = $2^k$ \\
+					Maps integers to powers of 2 (negative integers map to reciprocals)
+				\item $\{0,1\} \times N$ and N
+					\begin{equation}
+						f(b,n) =
+						\left\{
+						\begin{aligned}
+							2n \text{ if } b=0, \\
+							2n-1 \text{ if } b=1
+						\end{aligned}
+						\right.
+					\end{equation}
+					interleaves pairs: (0,n) maps to even numbers, (1,n) to odds.
+				\item $[0,1]$ and $(0,1)$
+					\begin{equation}
+						f(x) =
+						\left\{
+						\begin{aligned}
+							\frac{1}{2} \text{ if } x=0, \\
+							\frac{1}{n+2} \text{ if } x=1/n \text{ for some } n \in N, \\
+							x, \text{ otherwise}.
+						\end{aligned}
+						\right.
+					\end{equation}
+			\end{itemize}
+		\subsection*{Exercise 2.4}
+			This problem shows that "equinumerosity is an equivalence relation." (This justifies the notation $|A| = |B|$.) Let A, B, and C be sets. For this problem only, we'll write A $\sim$ B to mean that A and B are equinumerous, meaning that there is a bijection $A \rightarrow B$.
+			\begin{itemize}
+				\item Show that $A \sim A$.
+					The identity function $id_A: A \rightarrow A$ defined by $id_A(x) = x$ for all $x \in A$ is a bijection. Therefore every set is equinumerous with itself.
+				\item Show that if $A \sim B$ then $B \sim A$
+					If there is a bijection $f:A \rightarrow B$, then the inverse function $f^{-1}: B \rightarrow A$ is also a bijection. Thus, if $A \sim B$, then $B \sim A$.
+				\item Show that if $A \sim B$ and $B \sim C$, then $A \sim C$
+					If $f:A \rightarrow B$ and $g:B \rightarrow C$ are bijections, then the composition $g \circ f: A \rightarrow C$ is also a bijection. Therefore $A \sim C$.
+			\end{itemize}
+		\subsection*{Exercise 2.5}
+			\begin{itemize}
+				\item Prove that if A and B are countable sets, then $A \cup B$ is also a countable set.
+				
+					Let A and B be countable sets.
+					\begin{itemize}
+						\item Both A and B are finite. Their union $A \cup B$ is finite, hence countable.
+						\item At least one set is infinite.
+						\begin{itemize}
+							\item Assume A and B are disjoint (if not, replace B with $B \setminus A$, which is countable.)
+							\item Let $f:A \rightarrow N$ and $g:B \rightarrow N$ be bijections.
+							\item Definie h: $A \cup B \rightarrow N$ as:
+								\begin{equation}
+									h(x) = \left\{
+									\begin{aligned}
+										2f(x) \text{ if } x \in A, \\
+										2g(x) + 1 \text{ if }x \in B
+									\end{aligned}
+									\right.
+								\end{equation}
+							\item h is injective because even and odd numbers in N are disjoint. Thus, $A \cup B$ is countable.
+						\end{itemize}
+					\end{itemize}
+				\item Prove that if $A_n$ is a countable set for each $n \in N$, then the set $\bigcup_{n=1}^{\infty}A_n$ is also countable.
+					
+					Let $\{A_n\}_{n \in N}$ be countable sets.
+					\begin{itemize}
+						\item Enumerate elements of each $A_n$
+						\item Arrange elements in a grid and traverse diagonally. Use the pairing function $\pi(i,j)$ = $(i+j-1)(i+j-2)/2 + j$ to map $(i,j) \rightarrow N$
+						\item Define a surjection $\phi: N \rightarrow \bigcup_{n=1}^{\infty}A_n$ via $\phi(\pi(i,j)) = a_{ij}$. By the axiom of countable choice, such an enumeration exists.
+					\end{itemize}
+			\end{itemize}
+		\subsection*{Exercise 2.6}
+			Show that $|N| = |Z|$ by finding an explicit bijection from N to Z. You do not need to prove your bijection works.
+			
+			An explicit bijection $f:N \rightarrow Z$ is given by:
+			\begin{equation}
+				f(n) = \left\{
+				\begin{aligned}
+					\frac{n}{2} \text{ if n is even} \\
+					-\frac{n+1}{2} \text{ if n is odd}
+				\end{aligned}
+				\right.
+			\end{equation}
+			This maps the natural numbers 0, 1, 2, 3, 4, 5,... to the integers 0, -1, 1, -2, 2, -3, ... in order.
+		\subsection*{Exercise 2.7}
+			Let $A,B \subseteq R$, we define
+			\begin{equation}
+				A \cdot B = \{a \cdot b: a \in A \text{ and } b \in B\}
+			\end{equation}
+			\begin{itemize}
+				\item Give an example of sets $A_1$ and $B_1$ where $|A_1 \cdot B_1| < max\{|A_1|, |B_1|\}$
+				
+					Let $A_1 = \{0\}$ and $B_1 = \{1,2\}$
+					\begin{itemize}
+						\item Product set $A_1 \cdot B_1 = \{0\}$
+						\item Cardinalities $|A_1|=1, |B_1|=2, |A_1 \cdot B_1|=1$
+						\item result: $1 < max\{1,2\} = 2$
+					\end{itemize}
+				
+				\item Give an example of sets $A_2$ and $B_2$ where $|A_2 \cdot B_2| > max\{|A_2|, |B_2|\}$
+					Let $A_2 = \{1,2\}$ and $B_2 = \{3,4\}$
+					\begin{itemize}
+						\item Product set $A_2 \cdot B_2 = \{3,4,6,8\}$
+						\item Cardinalities $|A_2|=2, |B_2|=2, |A_2 \cdot B_2|=4$
+						\item result: $4 > max\{2,2\} = 2$
+					\end{itemize}
+				
+				\item Give an example of sets $A_3$ and $B_3$ where $|A_3 \cdot B_3| = max\{|A_3|, |B_3|\}$
+					
+					Let $A_3 = \{2\}$ and $B_3 = \{1,3,5\}$
+					\begin{itemize}
+						\item Product set $A_3 \cdot B_3 = \{2,6,10\}$
+						\item Cardinalities $|A_3|=1, |B_3|=3, |A_3 \cdot B_3|=3$
+						\item result: $3 = max\{1,3\} = 3$
+					\end{itemize}
+			\end{itemize}
+		\subsection*{Exercise 2.8}
+			\begin{itemize}
+				\item Describe a way to partition the set N into 6 subsets, each containing infinitely many elements.
+					
+					One simple way to partition N into 6 subsets, each containing infinitely many elements, is to use modular arithmetic. For each k = 0,1,2,3,4,5, define the subset:
+					\begin{equation}
+						A_k = \{n \in N: n \equiv k (\text{ mod } 6)\}
+					\end{equation}
+					Each $A_k$ contains all natural numbers congruent to k modulo 6. Since there are infinitely many natural numbers in each residue class modulo 6, each $A_k$ is infinite, and together, the six sets are disjoint and cover all of N.
+				
+				\item Describe a way to partition the set N into infinitely many subsets, each containing infinitely many elements.
+				
+					A classic construction is to use the following approach: For each $k \in N$ (where $k \ge 1$), define the subset:
+					\begin{equation}
+						B_k = \{n \in N: \text{n is divisible by k but not by any $j < k$}\}
+					\end{equation}
+			\end{itemize}
+		\subsection*{Exercise 2.9}
+			Is $|Z \times N|$ countable or uncountable?
+			
+			\begin{itemize}
+				\item key reasoning: a cartesian product of two countable sets is also countable.
+				\item arrange $Z \times N$ in an infinite grid and traverse diagonally to list all pairs, ensuring every element is included exactly once.
+				\item Thus, $|Z \times N| = \aleph_0$, confirming its countability.
+			\end{itemize}
+		\subsection*{Exercise 2.10}
+			Let S be the set of sequences $(a_n)$ where, for each n, $a_n \in \{0, 1\}$. Is S countable or uncountable?
+			
+				The set S is uncountable.
+				\begin{itemize}
+					\item Assume for contradiction that S is countable. Then there exists a bijection $f: N \rightarrow S$, listing all sequences $f(1), f(2), f(3),...$
+					\item Construct a new sequence $A = (a_n)$ such that 
+						\begin{equation}
+							a_n = \left\{
+							\begin{aligned}
+								1 \text{ if the nth digit of f(n) is 0} \\
+								0 \text{ if the nth digit of f(n) is 1}
+							\end{aligned}
+							\right.
+						\end{equation}
+						This sequence A differs from every f(n) at the nth position.
+					\item contradiction: Since A is not in the list f(1), f(2), f(3),..., f cannot be a bijection. Thus, S is uncountable.
+				\end{itemize}
+		\subsection*{Exercise 2.11}
+			Suppose that X is a nonempty set. Prove that the following three assertions are equivalent.
+			\begin{itemize}
+				\item X is finite or countably infinite.
+				\item There is one-to-one function $f: X \rightarrow N$.
+				\item There is an onto function $g: N \rightarrow X$.
+			\end{itemize}
+			\begin{itemize}
+				\item $(1) \implies (2)$
+				
+					If X is finite, say with n elements, we can enumerate its elements and define an injective function $f:X \rightarrow N$ by assigning each element a distinct natural number between 1 and n. If X is countably infinite, then by definition, there exists a bijection $h:X \rightarrow N$, which is certainly injective. Thus, in both cases, there is a one-to-one function $f:X \rightarrow N$
+				\item $(2) \implies (3)$
+				
+					Suppose there is an injective function $f:X \rightarrow N$. Let $T = f(X) \subseteq N$.
+					\begin{itemize}
+						\item If X is finite, then T is finite, and we can define $g: N \rightarrow X$ by mapping the first |X| natural numbers to all elements of X, and the rest to any fixed element of X. This function is onto.
+						\item If X is infinite, then T is an infinite subset of N, and by standard results, T is countably infinite and there exists a bijection $h: N \rightarrow T$. Composing h with $f^{-1}: T \rightarrow X$ yields surjection $g: N \rightarrow X$.
+					\end{itemize}
+				\item $(3) \implies (1)$
+				
+					Suppose there is a surjective function $g: N \rightarrow X$. Then X is either finite or countably infinite:
+					\begin{itemize}
+						\item If X is finite, the image of g is finite.
+						\item If X is infinite, then X is the image of N under g, so X is countable, and since it is infinite, it is countably infinite.
+					\end{itemize}
+			\end{itemize}
+		\subsection*{Exercise 2.12}
+			\begin{itemize}
+				\item Give an example of a collection of countably many disjoint open intervals, or prove that this does not exist.
+				
+					The collection $\{(n, n+1)| n \in Z\}$ consists of infinitely many disjoint open intervals.
+					\begin{itemize}
+						\item Disjointness: each interval $(n, n+1)$ does not overlap with others.
+						\item Countability: The set of integers Z is countable, so the collection is countable.
+					\end{itemize}
+				\item Give an example of a collection of uncountably many disjoint open intervals, or prove that this does not exist.
+				
+					Assume, for contradiction, that there exists an uncountable collection $\{I_{\alpha}\}_{\alpha \in A}$ of disjoint open intervals in R.
+					\begin{itemize}
+						\item Density of Rationals: each open interval $I_{\alpha}$ contains at least one rational number $q_{\alpha} \in Q$
+						\item Injection in Q: Map each interval $I_{\alpha}$ to $q_{\alpha} \in Q$. Since intervals are disjoint, $q_{\alpha} \ne q_{\beta}$ for $\alpha \ne \beta$, forming an injection $f:A \rightarrow Q$.
+						\item contradiction: Q is countable, but A is uncountable. Thus, no such collection exists.
+					\end{itemize}
+			\end{itemize}
+		\subsection*{Exercise 2.13}
+			Show that there are uncountably many irrational numbers.
+			
+			\begin{itemize}
+				\item Assume for contradiction that the set of irrational numbers $R \setminus Q$ is countable
+				\item Known results
+					\begin{itemize}
+						\item The rational numbers Q are countable
+						\item the real numbers R are uncountable
+					\end{itemize}
+				\item Union of sets
+					\begin{itemize}
+						\item $R = Q \cup (R \setminus Q)$
+						\item If both Q and $R \setminus Q$ were countable, their union R would also be countable (since the union of two countable sets is countable)
+					\end{itemize}
+				\item Contradiction: This directly contradicts the fact that R is uncountable.
+				\item Therefore, the set of irrational numbers is uncountable.
+			\end{itemize}
+		\subsection*{Exercise 2.14}
+			Prove that $N \times N$ is countably infinite by showing that the function $f: N \times N \rightarrow N$ defined by $f(m,n) = 2^{n-1}(2m-1)$ is a bijection.
+			
+			\begin{itemize}
+				\item Prove Injectivity
+				
+					Assume $f(m_1, n_1) = f(m_2, n_2)$. Then: $2^{n_1-1}(2m_1-1) = 2^{n_2-1}(2m_2-1)$.
+					\begin{itemize}
+						\item Suppose $n_1 \ne n_2$. Without loss of generality, let $n_1 > n_2$. Dividing both sides by $2^{n_2 - 1}$ gives $2^{n_1 - n_2}(2m_1 - 1) = 2m_2 - 1$. The left side is even while the right side is odd. This contradiction implies $n_1 = n_2$
+						\item $n_1 = n_2 \implies m_1 = m_2$
+					\end{itemize}
+					Thus, f is injective.
+				\item Prove surjectivity
+				
+					For any $k \in N$, we can write k as $k=2^{n-1} \cdot$ (odd natural number).
+					\begin{itemize}
+						\item Factorization: every natural number k has a unique prime factorization. Let $2^{n-1}$ be the highest power of 2 dividing k, Then $k = 2^{n-1}\cdot q$, where q is odd.
+						\item Define m: Since q is odd, write $q = 2m-1$ for some $m \in N$.
+					\end{itemize}
+					Thus, $k = 2^{n-1}(2m-1) = f(m,n)$, proving surjectivity.
+				\item Since f is both injectivve and surjective, it is a bijection. Therefore $N \times N$ is countably infinite.
+			\end{itemize}
+		\subsection*{Exercise 2.15}
+			Let F be the collection of all functions $f:R \rightarrow R$. Prove that F is uncountable.
+			
+				To prove that the collection F of all functions $f: R \rightarrow R$ is uncountable, we use a cardinality argument based on the power set of R:
+				\begin{itemize}
+					\item Subset of Functions:
+					
+						Consider the subset $G \subseteq F$ consisting of all characteristic functions $X_A: R \rightarrow \{0,1\}$, where $A \subseteq R$. each $X_A$ maps elements of A to 1 and all others to 0.
+					\item Bijection with Power Set:
+					
+						There is a bijection between G and P(R): every subset $A \subseteq R$ corresponds to a unique characteristic function $X_A$. By Cantor's theorem, $|P(R)| = 2^c$, where $c = |R|$
+					\item Uncountability of G:
+					
+						Since P(R) is uncountable (its cardinality exceeds c), the subset $G \subseteq F$ is also uncountable
+					\item Counclusion for F:
+						If G is uncountable, then F, which contains G, must also be uncountable.
+				\end{itemize}
 \end{document}
